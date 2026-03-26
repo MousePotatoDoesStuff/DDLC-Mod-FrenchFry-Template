@@ -3,6 +3,7 @@
 *.rpyc
 game/saves
 game/firstrun
+game/cache*
 .vscode
 log.txt
 traceback.txt
