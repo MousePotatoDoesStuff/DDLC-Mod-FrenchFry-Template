@@ -6,20 +6,26 @@ label story:
     scene black
     pause 1.0
 
-    "Welcome to the Doki Doki Modding Central Template demo."
+    "Welcome to the Doki Doki Modding Cent-"
+    $ renpy.call_screen("dialog", "A-hem.", ok_action=Return())
+    "Welcome to Mouse Potato's fork of the Doki Doki Modding Central Template demo."
+    $ renpy.call_screen("dialog", "Thank you.", ok_action=Return())
     label choice:
     menu:
         "Please select a mode to play through."
         #"ModCen Template Tutorials":
-            #jump modcen_tutorials
+            #call modcen_tutorials
         "{i}Mazda{/i}":
-            jump mazda
-    return
+            call mazda
+            return
+    jump story
 
 label modcen_tutorials:
-    "We are currently working on tutorials for the ModCen Template."
-    "Please be patient."
-    jump choice
+    "They are currently working on tutorials for the ModCen Template."
+    "They are TAKING TOO LONG."
+    "..."
+    "And so am I :P"
+    return
 
 label mazda:
     "{i}Mazda{/i} is a small demo story for the ModCen Template."
@@ -722,3 +728,4 @@ label mazda:
     "Don\'t be afraid to take risks and try new things with your stories."
     "And hey, even if it ultimately doesn\'t work out, you can always learn and try again."
     "Thanks for playing!"
+

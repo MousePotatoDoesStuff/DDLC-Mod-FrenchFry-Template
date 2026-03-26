@@ -4,7 +4,9 @@ A comprehensive modding template for creating Doki Doki Literature Club mods usi
 
 ## Template Identifier
 
-This template includes a `MODCEN_MARK` file in the root directory to identify it as a DDMCentral Mod Template project. This helps differentiate it from other DDLC modding templates (such as the Weiss template) which may have different structures, conventions, and setup procedures. If you're following a tutorial or seeking support, mentioning that you're using the ModCen template (identifiable by the `MODCEN_MARK` file) will help others provide more accurate assistance.
+This template used to include a `MODCEN_MARK` file in the root directory to identify it as a DDMCentral Mod Template project. This helps differentiate it from other DDLC modding templates (such as the Weiss template) which may have different structures, conventions, and setup procedures. If you're following a tutorial or seeking support, mentioning that you're using the ModCen template (identifiable by the `MODCEN_MARK` file) will help others provide more accurate assistance.
+
+This mark was replaced with `MODCEN_MARK` as this is a forked version of the DDMC template. The fork was made from Version 0.9.0.
 
 ## Table of Contents
 
@@ -118,10 +120,10 @@ define build.name = "YourModName"                    # Build filename
 define config.save_directory = "YourModName"        # Save folder name
 
 # Example from the template (found in game/options.rpy):
-define config.name = "Doki Doki Modding Central Mod Template"
-define config.version = "0.9.0"
-define build.name = "DDMCentral-Template"
-define config.save_directory = "DDMCentral-Template"
+define config.name = "Doki Doki French Fry Mod Template"
+define config.version = "0.1.0"
+define build.name = "DDFF-Template"
+define config.save_directory = "DDFF-Template"
 ```
 
 ### Character Definitions
@@ -531,7 +533,8 @@ This template is provided under the same terms as the original DDLC game. Please
 ## Credits
 
 - **Original Game**: Team Salvato
-- **Template**: DDMCentral Community
+- **Original Template**: DDMCentral Community
+- **Template Fork**: Mouse Potato Does Stuff
 - **Engine**: Ren'Py Visual Novel Engine
 
 ---

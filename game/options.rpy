@@ -1,26 +1,34 @@
 ##### ENGINE SETTINGS FOR YOUR MOD #####
 
+### CHANGE THESE SETTINGS
 # The formal name of the mod. Change the value of this to your mod's name
-define config.name = "Doki Doki Modding Central Mod Template"
-
-# Shows the name of the title in the bottom right corner of the main menu
-# Set to True for templating purposes, but you can toggle it on or off as you see fit
-define gui.show_name = False
+define config.name = "Doki Doki French Fry Mod Template"
 
 # The version of the mod
-define config.version = "0.9.0"
+define config.version = "0.1.0"
+
+# What your mod's filename will be called when it is built
+define build.name = "DDFF-Template"
+
+# Save directory - change to match your mod's name. This is located in AppData/Roaming/Ren'Py/ on Windows
+# and in ~/.renpy/ on Linux.
+define config.save_directory = "DDFF-Template"
 
 # The description of the mod. Typically not used, but you can set it to whatever you want
 define gui.about = _("")
 
-# What your mod's filename will be called when it is built
-define build.name = "DDMCentral-Template"
+# Shows the name of the title in the bottom right corner of the main menu
+# Set to True for templating purposes, but you can toggle it on or off as you see fit
+define gui.show_name = False
 
 # Toggles for different audio features.
 define config.has_sound = True
 define config.has_music = True
 define config.has_voice = False
 define config.main_menu_music = audio.t1   # Set this to whatever you want the main menu music to be
+
+
+### TECHNICAL STUFF
 
 # These settings control transitions between scenes
 define config.enter_transition = Dissolve(.2)
@@ -40,10 +48,6 @@ default preferences.afm_time = 15          # Auto-forward mode wait time
 # Default volume settings
 default preferences.music_volume = 0.75
 default preferences.sfx_volume = 0.75
-
-# Save directory - change to match your mod's name. This is located in AppData/Roaming/Ren'Py/ on Windows
-# and in ~/.renpy/ on Linux.
-define config.save_directory = "DDMCentral-Template"
 
 # Window icon that appears in your taskbar
 define config.window_icon = "gui/window_icon.png"
@@ -65,6 +69,9 @@ define config.rollback_enabled = config.developer  # Only enable rollback in dev
 # Menu settings
 define config.menu_clear_layers = ["front"]
 define config.gl_test_image = "white"
+
+
+
 
 init python:
     # Removes persistent data from other Ren'Py games
