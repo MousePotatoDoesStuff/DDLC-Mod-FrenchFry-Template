@@ -1,0 +1,36 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+The label splashscreen is defined twice, at File "game/splash.rpy", line 9:
+and File "game/splash/splash.rpy", line 6:
+label splashscreen:
+
+
+The label after_load is defined twice, at File "game/splash.rpy", line 128:
+and File "game/splash/splash.rpy", line 114:
+label after_load:
+
+
+The label autoload is defined twice, at File "game/splash.rpy", line 155:
+and File "game/splash/splash.rpy", line 141:
+label autoload:
+
+
+The label before_main_menu is defined twice, at File "game/splash.rpy", line 172:
+and File "game/splash/splash.rpy", line 158:
+label before_main_menu:
+
+
+The label quit is defined twice, at File "game/splash.rpy", line 175:
+and File "game/splash/splash.rpy", line 160:
+label quit:
+
+
+The label readonly is defined twice, at File "game/splash.rpy", line 178:
+and File "game/splash/splash.rpy", line 163:
+label readonly:
+
+
+Ren'Py Version: Ren'Py 8.5.2.26010301
+Thu Mar 26 21:59:01 2026

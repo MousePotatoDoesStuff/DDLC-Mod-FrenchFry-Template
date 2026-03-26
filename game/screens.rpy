@@ -342,10 +342,7 @@ screen navigation():
 
         if main_menu:
 
-            if persistent.playthrough == 1:
-                textbutton _("ŔŗñĮ¼»ŧþŀÂŻŕěōì«") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
-            else:
-                textbutton _("New Game") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
+            textbutton _("New Game") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
 
         else:
 
@@ -360,10 +357,7 @@ screen navigation():
             textbutton _("End Replay") action EndReplay(confirm=True)
 
         elif not main_menu:
-            if persistent.playthrough != 3:
-                textbutton _("Main Menu") action MainMenu()
-            else:
-                textbutton _("Main Menu") action NullAction()
+            textbutton _("Main Menu") action MainMenu()
 
         textbutton _("Settings") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
@@ -393,24 +387,14 @@ style navigation_button_text:
 screen main_menu():
 
     style_prefix "main_menu" tag menu
+    add "menu_bg"
+    add "menu_art_y"
+    add "menu_art_n"
+    frame
 
-    if persistent.ghost_menu:
-
-        add "white"
-        add "menu_art_y_ghost"
-        add "menu_art_n_ghost"
-
-    else:
-
-        add "menu_bg"
-        add "menu_art_y"
-        add "menu_art_n"
-        frame
-
-        use navigation
+    use navigation
 
     if gui.show_name:
-
         vbox:
             text "[config.name!t]":
                 style "main_menu_title"
@@ -418,36 +402,16 @@ screen main_menu():
             text "[config.version]":
                 style "main_menu_version"
 
-    if not persistent.ghost_menu:
+    add "menu_particles"
+    add "menu_particles"
+    add "menu_particles"
+    add "menu_logo"
 
-        add "menu_particles"
-        add "menu_particles"
-        add "menu_particles"
-        add "menu_logo"
+    add "menu_art_s"
+    add "menu_particles"
 
-    if persistent.ghost_menu:
-
-        add "menu_art_s_ghost"
-        add "menu_art_m_ghost"
-
-    else:
-
-        if persistent.playthrough == 1 or persistent.playthrough == 2:
-
-            add "menu_art_s_glitch"
-
-        else:
-
-            add "menu_art_s"
-
-        add "menu_particles"
-
-        if persistent.playthrough != 4:
-
-            add "menu_art_m"
-
-        add "menu_fade"
-
+    add "menu_art_m"
+    add "menu_fade"
     key "K_ESCAPE" action Quit(confirm=False)
 
 style main_menu_frame is empty
@@ -490,11 +454,8 @@ screen game_menu_m():
 screen game_menu(title, scroll=None):
 
     if main_menu:
-
         add gui.main_menu_background
-
     else:
-
         key "mouseup_3" action Return()
         add gui.game_menu_background
 
@@ -541,9 +502,6 @@ screen game_menu(title, scroll=None):
                 transclude
 
     use navigation
-
-    if not main_menu and persistent.playthrough == 2 and not persistent.menu_bg_m and renpy.random.randint(0, 49) == 0:
-        on "show" action Show("game_menu_m")
 
     textbutton _("Return"):
         style "return_button"
@@ -649,13 +607,7 @@ screen load():
 
 init python:
     def FileActionMod(name, page=None, **kwargs):
-        if persistent.playthrough == 1 and not persistent.deleted_saves and renpy.current_screen().screen_name[0] == "load" and FileLoadable(name):
-            return Show(screen="dialog", message="File error: \"characters/sayori.chr\"\n\nThe file is missing or corrupt.",
-                ok_action=Show(screen="dialog", message="The save file is corrupt. Starting a new game.", ok_action=Function(renpy.full_restart, label="start")))
-        elif persistent.playthrough == 3 and renpy.current_screen().screen_name[0] == "save":
-            return Show(screen="dialog", message="There's no point in saving anymore.\nDon't worry, I'm not going anywhere.", ok_action=Hide("dialog"))
-        else:
-            return FileAction(name)
+        return FileAction(name)
 
 
 screen file_slots(title):
@@ -715,13 +667,6 @@ screen file_slots(title):
                 yalign 1.0
 
                 spacing gui.page_spacing
-
-
-
-
-
-
-
 
                 for page in range(1, 10):
                     textbutton "[page]" action FilePage(page)
@@ -1227,7 +1172,7 @@ screen name_input(message, ok_action):
             style "confirm_prompt"
             xalign 0.5
 
-        input default "" value VariableInputValue("player") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        input default "" value VariableInputValue("player") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
 
 
 

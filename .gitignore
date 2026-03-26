@@ -1,6 +1,7 @@
 *.rpa
 *.rpyb
 *.rpyc
+*.bak
 game/saves
 game/firstrun
 game/cache*
