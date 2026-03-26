@@ -2,6 +2,9 @@
 # This file covers all imports and initializations for the game.
 # It is HIGHLY recommended not to remove this file, as other files may depend on it.
 
+# I guess you could say...
+# it's very import-ant. - MPDS
+
 init python:
     import random               # For random number generation and shuffling
     import datetime             # For date and time operations
