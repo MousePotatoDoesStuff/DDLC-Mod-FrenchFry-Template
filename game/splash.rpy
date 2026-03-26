@@ -1,9 +1,6 @@
 init python:
     menu_trans_time = 1
-    splash_message_default = '''"If I have seen further (than others),
-    it is by standing on the shoulders of giants."
-    
-    - Isaac Newton'''
+    splash_message_default = '\"If I have seen further (than others),\nit is by standing on the shoulders of giants.\"\n\n- Isaac Newton'''
     splash_messages = ["insert funni message here"]
 
 label splashscreen:
@@ -66,12 +63,10 @@ label splashscreen:
         scene tos
         with Dissolve(1.0)
         pause 1.0
-
         # ==================================================================================================================================================
         # CHANGE THIS TO YOUR OWN TERMS OF SERVICE
         # ==================================================================================================================================================
-
-        "This template is a fan-made production and is not in any way affiliated with Team Salvato or Serenty Forge."
+        "[config.name] is a fan-made production and is not in any way affiliated with Team Salvato or Serenty Forge."
         "Users of this template are highly encouraged to both complete the original game and understand the IP guidelines set in place for this product."
         "This template is not intended to be used for commercial purposes, and is only meant to be used as a base for fan works."
         "Please support the official release on ddlc.moe."
@@ -89,114 +84,25 @@ label splashscreen:
         scene white
 
     python:
-        s_kill_early = None
-        if persistent.playthrough == 0:
-            try: renpy.file("../characters/sayori.chr")
-            except: s_kill_early = True
-        if not s_kill_early:
-            if persistent.playthrough <= 2 and persistent.playthrough != 0:
-                try: renpy.file("../characters/monika.chr")
-                except: open(config.basedir + "/characters/monika.chr", "wb").write(renpy.file("monika.chr").read())
-            if persistent.playthrough <= 1 or persistent.playthrough == 4:
-                try: renpy.file("../characters/natsuki.chr")
-                except: open(config.basedir + "/characters/natsuki.chr", "wb").write(renpy.file("natsuki.chr").read())
-                try: renpy.file("../characters/yuri.chr")
-                except: open(config.basedir + "/characters/yuri.chr", "wb").write(renpy.file("yuri.chr").read())
-            if persistent.playthrough == 4:
-                try: renpy.file("../characters/sayori.chr")
-                except: open(config.basedir + "/characters/sayori.chr", "wb").write(renpy.file("sayori.chr").read())
-
-    if not persistent.special_poems:
-        python hide:
-            persistent.special_poems = [0,0,0]
-            a = range(1,12)
-            for i in range(3):
-                b = renpy.random.choice(a)
-                persistent.special_poems[i] = b
-                a.remove(b)
+        restore_relevant_characters()
 
     $ basedir = config.basedir.replace('\\', '/')
 
     if persistent.autoload:
         jump autoload
 
-    $ config.allow_skipping = False
-
-    if persistent.playthrough == 2 and not persistent.seen_ghost_menu and renpy.random.randint(0, 63) == 0:
-        show black
-        $ config.main_menu_music = audio.ghostmenu
-        $ persistent.seen_ghost_menu = True
-        $ persistent.ghost_menu = True
-        $ renpy.music.play(config.main_menu_music)
-        $ pause(1.0)
-        show end with dissolve_cg
-        $ pause(3.0)
-        $ config.allow_skipping = True
-        return
-
-    if s_kill_early:
-        show black
-        play music "bgm/s_kill_early.ogg"
-        $ pause(1.0)
-        show end with dissolve_cg
-        $ pause(3.0)
-        scene white
-        show expression "images/cg/s_kill_early.png":
-            yalign -0.05
-            xalign 0.25
-            dizzy(1.0, 4.0, subpixel=False)
-        show white as w2:
-            choice:
-                ease 0.25 alpha 0.1
-            choice:
-                ease 0.25 alpha 0.125
-            choice:
-                ease 0.25 alpha 0.15
-            choice:
-                ease 0.25 alpha 0.175
-            choice:
-                ease 0.25 alpha 0.2
-            choice:
-                ease 0.25 alpha 0.225
-            choice:
-                ease 0.25 alpha 0.25
-            choice:
-                ease 0.25 alpha 0.275
-            choice:
-                ease 0.25 alpha 0.3
-            pass
-            choice:
-                pass
-            choice:
-                0.25
-            choice:
-                0.5
-            choice:
-                0.75
-            repeat
-        show noise:
-            alpha 0.1
-        with Dissolve(1.0)
-        show expression Text("Now everyone can be happy.", style="sayori_text"):
-            xalign 0.8
-            yalign 0.5
-            alpha 0.0
-            600
-            linear 60 alpha 0.5
-        pause
-        $ renpy.quit()
-
-
     show white
-    $ persistent.ghost_menu = False
-    $ splash_message = splash_message_default
-    $ config.main_menu_music = audio.t1
-    $ renpy.music.play(config.main_menu_music)
-    $ starttime = datetime.datetime.now()
+    python:
+        config.allow_skipping = False
+        persistent.ghost_menu = False
+        splash_message = splash_message_default
+        renpy.music.play(config.main_menu_music)
+        starttime = datetime.datetime.now()
     show intro with Dissolve(0.5, alpha=True)
     $ pause(3.0 - (datetime.datetime.now() - starttime).total_seconds())
     hide intro with Dissolve(max(0, 3.5 - (datetime.datetime.now() - starttime).total_seconds()), alpha=True)
-    if persistent.playthrough == 2 and renpy.random.randint(0, 3) == 0:
+
+    if renpy.random.randint(0, 3) == 0:
         $ splash_message = renpy.random.choice(splash_messages)
     show splash_warning "[splash_message]" with Dissolve(max(0, 4.0 - (datetime.datetime.now() - starttime).total_seconds()), alpha=True)
     $ pause(6.0 - (datetime.datetime.now() - starttime).total_seconds())
@@ -213,30 +119,7 @@ label after_load:
     $ persistent.ghost_menu = False
     $ style.say_dialogue = style.normal
 
-    if persistent.yuri_kill > 0 and persistent.autoload == "yuri_kill_2":
-        if persistent.yuri_kill >= 1380:
-            $ persistent.yuri_kill = 1440
-        elif persistent.yuri_kill >= 1180:
-            $ persistent.yuri_kill = 1380
-        elif persistent.yuri_kill >= 1120:
-            $ persistent.yuri_kill = 1180
-        elif persistent.yuri_kill >= 920:
-            $ persistent.yuri_kill = 1120
-        elif persistent.yuri_kill >= 720:
-            $ persistent.yuri_kill = 920
-        elif persistent.yuri_kill >= 660:
-            $ persistent.yuri_kill = 720
-        elif persistent.yuri_kill >= 460:
-            $ persistent.yuri_kill = 660
-        elif persistent.yuri_kill >= 260:
-            $ persistent.yuri_kill = 460
-        elif persistent.yuri_kill >= 200:
-            $ persistent.yuri_kill = 260
-        else:
-            $ persistent.yuri_kill = 200
-        jump expression persistent.autoload
-
-    elif anticheat != persistent.anticheat:
+    if anticheat != persistent.anticheat:
         stop music
         scene black
         "The save file could not be loaded."
@@ -248,15 +131,15 @@ label after_load:
         else:
             m "You're so funny, [persistent.playername]."
         $ renpy.utter_restart()
-    else:
-        if persistent.playthrough == 0 and not persistent.first_load and not config.developer:
-            $ persistent.first_load = True
-            call screen dialog("Hint: You can use the \"Skip\" button to\nfast-forward through text you've already read.", ok_action=Return())
+        return
+    
+    if persistent.playthrough == 0 and not persistent.first_load and not config.developer:
+        $ persistent.first_load = True
+        call screen dialog("Hint: You can use the \"Skip\" button to\nfast-forward through text you've already read.", ok_action=Return())
     return
 
 label autoload:
     python:
-
         if "_old_game_menu_screen" in globals():
             _game_menu_screen = _old_game_menu_screen
             del _old_game_menu_screen
@@ -264,54 +147,17 @@ label autoload:
             _history = _old_history
             del _old_history
         renpy.block_rollback()
-
-
         renpy.context()._menu = False
         renpy.context()._main_menu = False
         main_menu = False
         _in_replay = None
-
-    if persistent.yuri_kill > 0 and persistent.autoload == "yuri_kill_2":
-        $ persistent.yuri_kill += 200
-
-    if renpy.get_return_stack():
-        $ renpy.pop_call()
-    jump expression persistent.autoload
-
-label autoload_yurikill:
-    if persistent.yuri_kill >= 1380:
-        $ persistent.yuri_kill = 1440
-    elif persistent.yuri_kill >= 1180:
-        $ persistent.yuri_kill = 1380
-    elif persistent.yuri_kill >= 1120:
-        $ persistent.yuri_kill = 1180
-    elif persistent.yuri_kill >= 920:
-        $ persistent.yuri_kill = 1120
-    elif persistent.yuri_kill >= 720:
-        $ persistent.yuri_kill = 920
-    elif persistent.yuri_kill >= 660:
-        $ persistent.yuri_kill = 720
-    elif persistent.yuri_kill >= 460:
-        $ persistent.yuri_kill = 660
-    elif persistent.yuri_kill >= 260:
-        $ persistent.yuri_kill = 460
-    elif persistent.yuri_kill >= 200:
-        $ persistent.yuri_kill = 260
-    else:
-        $ persistent.yuri_kill = 200
+        if renpy.get_return_stack():
+            renpy.pop_call()
     jump expression persistent.autoload
 
 label before_main_menu:
-    $ config.main_menu_music = audio.t1
     return
-
 label quit:
-    if persistent.ghost_menu:
-        hide screen main_menu
-        scene white
-        show expression "gui/menu_art_m_ghost.png":
-            xpos -100 ypos -100 zoom 3.5
-        pause 0.01
     return
 
 label readonly:

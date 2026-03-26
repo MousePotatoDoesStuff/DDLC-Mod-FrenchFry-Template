@@ -1299,7 +1299,6 @@ default persistent.seen_sticker = None
 default persistent.ghost_menu = None
 default persistent.seen_ghost_menu = None
 default seen_eyes_this_chapter = False
-default persistent.special_poems = None
 default persistent.anticheat = 0
 default persistent.menu_bg_m = None
 default persistent.first_poem = None
