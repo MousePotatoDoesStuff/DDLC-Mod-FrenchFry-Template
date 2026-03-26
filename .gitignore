@@ -1,0 +1,8 @@
+*.rpa
+*.rpyb
+*.rpyc
+game/saves
+game/firstrun
+.vscode
+log.txt
+traceback.txt
