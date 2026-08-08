@@ -1304,7 +1304,6 @@ default persistent.menu_bg_m = None
 default persistent.first_poem = None
 default persistent.seen_colors_poem = None
 default persistent.monika_back = None
-default in_sayori_kill = None
 default in_yuri_kill = None
 default anticheat = 0
 define config.mouse = None

@@ -6,7 +6,7 @@ A comprehensive modding template for creating Doki Doki Literature Club mods usi
 
 This template used to include a `MODCEN_MARK` file in the root directory to identify it as a DDMCentral Mod Template project. This helps differentiate it from other DDLC modding templates (such as the Weiss template) which may have different structures, conventions, and setup procedures. If you're following a tutorial or seeking support, mentioning that you're using the ModCen template (identifiable by the `MODCEN_MARK` file) will help others provide more accurate assistance.
 
-This mark was replaced with `MODCEN_MARK` as this is a forked version of the DDMC template. The fork was made from Version 0.9.0.
+This mark was replaced with `MOUSE_MARK` as this is a forked version of the DDMC template. The fork was made from Version 0.9.0.
 
 ## Table of Contents
 
