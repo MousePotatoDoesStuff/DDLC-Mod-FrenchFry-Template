@@ -5,7 +5,9 @@
 game/saves
 game/firstrun
 game/cache*
+*assets*
 .vscode
+.idea
 log.txt
 traceback.txt
 characters/
