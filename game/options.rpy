@@ -5,7 +5,7 @@
 define config.name = "Doki Doki French Fry Mod Template"
 
 # The version of the mod
-define config.version = "0.1.0"
+define config.version = "0.1.1"
 
 # What your mod's filename will be called when it is built
 define build.name = "DDFF-Template"
